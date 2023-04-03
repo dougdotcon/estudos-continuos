@@ -1,0 +1,37 @@
+Segue abaixo um guia para utilizar o GitHub Actions como ferramenta de CI/CD:
+
+Acesse a sua conta do GitHub e crie um novo repositório para o seu projeto.
+
+Clique na aba "Actions" do seu repositório e, em seguida, clique em "New Workflow". Isso irá abrir o editor de código do GitHub Actions.
+
+Na seção "name", defina um nome para a sua pipeline de CI/CD.
+
+Na seção "on", defina o evento que irá desencadear a execução da pipeline. Por exemplo, se você deseja que a pipeline seja executada sempre que houver um push na branch "master", você pode definir:
+
+on:
+  push:
+    branches:
+      - master
+
+Na seção "jobs", defina as tarefas que a pipeline deve executar. Por exemplo, se você deseja compilar o seu código e executar os testes automatizados, você pode definir:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Run tests
+        run: npm run test
+
+Nesse exemplo, a pipeline irá executar em uma máquina virtual com sistema operacional Ubuntu, irá fazer o checkout do código fonte, instalar as dependências do projeto, compilar o código e executar os testes.
+
+Salve o arquivo de configuração da pipeline (geralmente com o nome "workflow.yml") e faça um commit no seu repositório.
+
+Agora, sempre que ocorrer um push na branch "master", a pipeline de CI/CD será executada automaticamente. Você pode acompanhar o progresso da pipeline na aba "Actions" do seu repositório.
+
+Com o GitHub Actions, é possível integrar diversas ferramentas e serviços ao seu pipeline de CI/CD, como o Docker e o Kubernetes, por exemplo. Você pode encontrar mais informações e exemplos na documentação oficial do GitHub Actions: https://docs.github.com/en/actions.

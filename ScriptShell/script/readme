@@ -1,0 +1,188 @@
+Este guia tem como objetivo fornecer um passo a passo para a instalação e configuração de um servidor web no Linux, utilizando o Apache como servidor HTTP e o NGINX como servidor proxy reverso.
+
+O script apresentado automatiza a configuração de serviços básicos de rede e web como DHCP, DNS, SSH, SFTP, Apache e NGINX. Antes de executar o script, é importante substituir os valores das configurações pelos valores correspondentes da sua rede e preferências.
+
+Ao executar o script, os pacotes do sistema serão atualizados e os serviços DHCP, DNS, SSH, SFTP, Apache e NGINX serão instalados e configurados.
+
+O servidor DHCP será configurado com a sua rede e o servidor DNS será configurado para o domínio exemplo.com. O servidor SSH será configurado para permitir conexões com autenticação de senha e o servidor SFTP será configurado para permitir que cada usuário acesse sua própria pasta FTP. O Apache será instalado e configurado para utilizar a pasta /var/www/html como diretório raiz, enquanto o NGINX será instalado e configurado como servidor proxy reverso.
+
+Após a execução do script, é importante testar a conectividade e os serviços instalados e configurados para garantir que tudo está funcionando corretamente.
+
+Exemplo de script Shell que pode ser utilizado para a configuração de um servidor web, incluindo a instalação e configuração dos serviços básicos de rede e web como DHCP, DNS, SSH, SFTP, Apache e NGINX.
+
+ #!/bin/bash
+
+# Atualiza os pacotes do sistema
+sudo apt update && sudo apt upgrade -y
+
+# Instala o servidor DHCP
+sudo apt install isc-dhcp-server -y
+
+# Configura o servidor DHCP
+# Substitua os valores abaixo pelos valores da sua rede
+sudo bash -c "cat > /etc/dhcp/dhcpd.conf" << EOF
+subnet 192.168.0.0 netmask 255.255.255.0 {
+range 192.168.0.100 192.168.0.200;
+option domain-name-servers 8.8.8.8, 8.8.4.4;
+option routers 192.168.0.1;
+}
+EOF
+
+# Reinicia o servidor DHCP
+sudo systemctl restart isc-dhcp-server
+
+# Instala o servidor DNS
+sudo apt install bind9 bind9utils bind9-doc -y
+
+# Configura o servidor DNS
+# Substitua os valores abaixo pelos valores da sua rede
+sudo bash -c "cat > /etc/bind/named.conf.options" << EOF
+options {
+directory "/var/cache/bind";
+
+forwarders {
+8.8.8.8;
+8.8.4.4;
+};
+
+dnssec-validation auto;
+
+auth-nxdomain no; # conform to RFC1035
+listen-on-v6 { any; };
+};
+EOF
+
+sudo bash -c "cat > /etc/bind/named.conf.local" << EOF
+zone "exemplo.com" {
+type master;
+file "/etc/bind/db.exemplo.com";
+};
+EOF
+
+sudo bash -c "cat > /etc/bind/db.exemplo.com" << EOF
+;
+; BIND data file for exemplo.com
+;
+\$TTL 600
+@ IN SOA ns1.exemplo.com. root.exemplo.com. (
+2022040301 ; Serial
+7200 ; Refresh
+120 ; Retry
+2419200 ; Expire
+604800 ) ; Negative Cache TTL
+;
+@ IN NS ns1.exemplo.com.
+@ IN NS ns2.exemplo.com.
+ns1 IN A 192.168.0.1
+ns2 IN A 192.168.0.2
+www IN A 192.168.0.3
+EOF
+
+# Reinicia o servidor DNS
+sudo systemctl restart bind9
+
+# Instala o servidor SSH
+sudo apt install openssh-server -y
+
+# Configura o servidor SSH
+# Substitua os valores abaixo pelos valores de sua preferência
+sudo bash -c "cat > /etc/ssh/sshd_config" << EOF
+Port 22
+Protocol 2
+PermitRootLogin no
+PasswordAuthentication yes
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+X11Forwarding yes
+UsePAM yes
+EOF
+
+# Reinicia o servidor SSH
+sudo systemctl restart ssh
+
+# Instala o servidor SFTP
+sudo apt install vsftpd -y
+
+# Configura o servidor SFTP
+# Substitua os valores abaixo pelos valores de sua preferência
+sudo bash -c "cat > /etc/vsftpd.conf" << EOF
+listen=YES
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+use_localtime=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+secure_chroot_dir=/var/run/vsftpd/empty
+pam_service_name=vsftpd
+EOF
+
+Permitir que os usuários acessem suas pastas pessoais
+sudo bash -c "cat >> /etc/vsftpd.conf" << EOF
+user_sub_token=$USER
+local_root=/home/$USER/ftp
+chroot_local_user=YES
+hide_ids=YES
+EOF
+
+Cria uma pasta FTP para cada usuário
+sudo mkdir /home/user1/ftp
+sudo mkdir /home/user2/ftp
+
+Adiciona usuários ao servidor SFTP
+sudo useradd -m user1 -p password1
+sudo useradd -m user2 -p password2
+
+Define as permissões corretas para as pastas FTP
+sudo chown root:root /home/user*
+sudo chmod 755 /home/user*
+sudo chmod 755 /home/user*/ftp
+
+Reinicia o servidor SFTP
+sudo systemctl restart vsftpd
+
+Instala o servidor Apache
+sudo apt install apache2 -y
+
+Configura o servidor Apache
+Substitua os valores abaixo pelos valores de sua preferência
+sudo bash -c "cat > /etc/apache2/sites-available/000-default.conf" << EOF
+<VirtualHost *:80>
+ServerAdmin webmaster@localhost
+DocumentRoot /var/www/html
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
+
+Reinicia o servidor Apache
+sudo systemctl restart apache2
+
+Instala o servidor NGINX
+sudo apt install nginx -y
+
+Configura o servidor NGINX
+Substitua os valores abaixo pelos valores de sua preferência
+sudo bash -c "cat > /etc/nginx/sites-available/default" << EOF
+server {
+listen 80 default_server;
+listen [::]:80 default_server;
+
+root /var/www/html;
+index index.html index.htm index.nginx-debian.html;
+
+server_name _;
+
+location / {
+    try_files \$uri \$uri/ =404;
+}
+}
+EOF
+
+Reinicia o servidor NGINX
+sudo systemctl restart nginx
+
+Finaliza a execução do script
+echo "Configuração do servidor web concluída."

@@ -1,0 +1,105 @@
+O guia de uso de bancos de dados como MySQL ou SQLite para armazenar informações dos usuários em um projeto de automação usando Shell Script em sistemas operacionais Linux é uma ferramenta importante para garantir a segurança e eficiência na gestão de dados de usuários em um ambiente automatizado.
+
+Este guia tem como objetivo fornecer um passo a passo de como instalar o banco de dados escolhido, criar o banco de dados e tabela para armazenar as informações dos usuários, como se conectar ao banco de dados, executar comandos SQL para inserir, atualizar, recuperar ou excluir informações dos usuários e as precauções necessárias para evitar vulnerabilidades e ataques.
+
+Com este guia, os usuários poderão aprender como utilizar o MySQL ou SQLite em conjunto com Shell Script, permitindo a automação de rotinas e processos, agilizando as atividades do dia a dia e mantendo a segurança das informações dos usuários.
+
+Para aqueles que desejam implementar um projeto de automação de dados em um ambiente Linux, este guia se tornará um instrumento essencial para o sucesso do projeto, garantindo a eficiência, segurança e organização das informações dos usuários.
+
+Para usar bancos de dados como MySQL ou SQLite em um projeto de automação usando Shell Script em um sistema operacional Linux, você precisará seguir os seguintes passos:
+
+Instalar o banco de dados no servidor: Para instalar o MySQL ou SQLite no servidor, você precisará usar o gerenciador de pacotes do Linux, como apt ou yum. Para o MySQL, você pode executar os seguintes comandos em um terminal:
+
+sudo apt update
+sudo apt install mysql-server
+
+Para o SQLite, você pode executar os seguintes comandos em um terminal:
+
+sudo apt update
+sudo apt install sqlite3 libsqlite3-dev
+
+Criar o banco de dados e a tabela: Depois de instalar o banco de dados, você precisará criar um banco de dados e uma tabela para armazenar as informações dos usuários. Você pode fazer isso usando comandos SQL. Por exemplo, para criar um banco de dados e uma tabela no MySQL, você pode executar os seguintes comandos em um terminal:
+
+mysql -u root -p
+CREATE DATABASE usuarios;
+USE usuarios;
+CREATE TABLE usuarios (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  senha VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+Para criar um banco de dados e uma tabela no SQLite, você pode executar os seguintes comandos em um terminal:
+
+sqlite3 usuarios.db
+CREATE TABLE usuarios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL,
+  email TEXT NOT NULL,
+  senha TEXT NOT NULL
+);
+
+Conectar ao banco de dados usando Shell Script: Depois de criar o banco de dados e a tabela, você precisará se conectar ao banco de dados usando Shell Script. Você pode fazer isso usando o comando "mysql" para o MySQL ou o comando "sqlite3" para o SQLite. Por exemplo, para se conectar ao MySQL em Shell Script, você pode executar os seguintes comandos:
+
+#!/bin/bash
+MYSQL_USER="usuario"
+MYSQL_PASSWORD="senha"
+MYSQL_DATABASE="usuarios"
+mysql -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE"
+
+Para se conectar ao SQLite em Shell Script, você pode executar os seguintes comandos:
+
+#!/bin/bash
+sqlite3 usuarios.db
+
+Executar comandos SQL em Shell Script: Depois de se conectar ao banco de dados, você poderá executar comandos SQL em Shell Script para inserir, atualizar, recuperar ou excluir informações dos usuários. Você pode usar o comando "mysql" ou "sqlite3" para executar esses comandos. Por exemplo, para inserir um usuário no MySQL em Shell Script, você pode executar os seguintes comandos:
+
+#!/bin/bash
+MYSQL_USER="usuario"
+MYSQL_PASSWORD="senha"
+MYSQL_DATABASE="usuarios"
+nome="João"
+email="joao@exemplo.com"
+senha="123456"
+mysql -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" -e "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha');"
+
+Para inserir um usuário no SQLite em Shell Script, você pode executar os seguintes comandos:
+
+#!/bin/bash
+nome="João"
+email="joao@exemplo.com"
+senha="123456"
+sqlite3 usuarios.db "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha');"
+
+Recuperar informações dos usuários em Shell Script: Para recuperar informações dos usuários, você pode usar o comando "mysql" ou "sqlite3" para executar uma consulta SQL. Por exemplo, para recuperar todos os usuários no MySQL em Shell Script, você pode executar os seguintes comandos:
+
+#!/bin/bash
+MYSQL_USER="usuario"
+MYSQL_PASSWORD="senha"
+MYSQL_DATABASE="usuarios"
+mysql -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" -e "SELECT * FROM usuarios;"
+
+Para recuperar todos os usuários no SQLite em Shell Script, você pode executar os seguintes comandos:
+
+#!/bin/bash
+sqlite3 usuarios.db "SELECT * FROM usuarios;"
+
+Atualizar ou excluir informações dos usuários em Shell Script: Para atualizar ou excluir informações dos usuários, você pode usar o comando "mysql" ou "sqlite3" para executar uma consulta SQL. Por exemplo, para atualizar o email de um usuário no MySQL em Shell Script, você pode executar os seguintes comandos:
+
+#!/bin/bash
+MYSQL_USER="usuario"
+MYSQL_PASSWORD="senha"
+MYSQL_DATABASE="usuarios"
+id=1
+novo_email="novoemail@exemplo.com"
+mysql -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" -e "UPDATE usuarios SET email='$novo_email' WHERE id=$id;"
+
+Para excluir um usuário no SQLite em Shell Script, você pode executar os seguintes comandos:
+
+#!/bin/bash
+id=1
+sqlite3 usuarios.db "DELETE FROM usuarios WHERE id=$id;"
+
+Esses são alguns exemplos de como usar bancos de dados MySQL ou SQLite em um projeto de automação usando Shell Script em um sistema operacional Linux. Lembre-se de que esses são apenas exemplos e que você precisará adaptar esses comandos à sua aplicação específica. Além disso, é importante garantir a segurança dos dados dos usuários e tomar as devidas precauções para evitar vulnerabilidades e ataques.

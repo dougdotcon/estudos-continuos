@@ -1,0 +1,9 @@
+Este projeto tem como objetivo criar um script Shell que automatize tarefas comuns relacionadas a serviços básicos de rede e web, como DHCP, DNS, SSH, SFTP, Apache e NGINX. O script terá comentários explicando o propósito e o funcionamento de cada parte do código.
+
+Ao executar o script, ele irá atualizar os pacotes do sistema, instalar e configurar o servidor DHCP e DNS, instalar e configurar o servidor SSH e SFTP, e instalar e configurar os servidores web Apache e NGINX.
+
+O servidor DHCP será configurado para a rede especificada, com um range de IPs disponíveis, servidores DNS e gateway padrão. O servidor DNS será configurado para servir a zona de exemplo.com e terá um registro para o servidor web.
+
+O servidor SSH será configurado para desativar o login de root e permitir apenas autenticação com senha. O servidor SFTP será configurado para permitir apenas usuários locais e permitir gravação em diretórios locais.
+
+Por fim, os servidores web Apache e NGINX serão instalados e configurados para servir arquivos estáticos na porta 80.

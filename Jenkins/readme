@@ -1,0 +1,21 @@
+Para utilizar uma ferramenta de CI/CD no Jenkins, siga os seguintes passos:
+
+Instale o Jenkins: Se você ainda não possui o Jenkins instalado, siga as instruções do site oficial para instalação na sua plataforma.
+
+Crie um novo job: No Jenkins, um job é uma tarefa que você deseja executar de forma automatizada. Para criar um novo job, clique em "Novo Job" na página inicial do Jenkins.
+
+Selecione o tipo de job: Escolha o tipo de job que você deseja criar. Para um projeto de CI/CD, selecione "Pipeline" como tipo de job.
+
+Configure a pipeline: Uma pipeline é uma série de etapas que descrevem como o código é compilado, testado e implantado. Configure sua pipeline, definindo as etapas e a sequência em que devem ser executadas.
+
+Adicione o código-fonte: Na seção "Pipeline" do seu job, especifique o código-fonte do seu projeto. Isso pode ser um repositório Git, SVN ou outro sistema de controle de versão.
+
+Defina os triggers: Configure o que irá desencadear a execução da pipeline. Isso pode incluir a atualização do repositório de código-fonte, a conclusão de um build anterior ou uma programação de tempo.
+
+Adicione etapas de build e testes: Adicione etapas para compilar e testar o código-fonte do seu projeto. Isso ajudará a identificar problemas e erros antes da implantação.
+
+Adicione etapas de implantação: Adicione etapas para implantar o código compilado em um ambiente de teste ou produção.
+
+Configure a integração com outras ferramentas: Se você usa outras ferramentas de CI/CD, como o Docker ou o Kubernetes, configure a integração com essas ferramentas na sua pipeline.
+
+Salve e execute o job: Depois de configurar a pipeline, salve e execute o job. O Jenkins irá compilar, testar e implantar o código-fonte do seu projeto de forma automatizada. Você pode monitorar o status do job na página inicial do Jenkins e ver o progresso da pipeline em tempo real.

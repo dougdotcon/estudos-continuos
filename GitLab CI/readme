@@ -1,0 +1,41 @@
+O GitLab CI é uma ferramenta de integração contínua e implantação contínua (CI/CD) que permite automatizar o processo de construção, teste e implantação de software. Segue abaixo um guia passo a passo para utilização do GitLab CI em seu projeto:
+
+Configure o GitLab Runner
+Para utilizar o GitLab CI, é necessário configurar o GitLab Runner, que é responsável por executar as etapas do pipeline de CI/CD. O Runner pode ser configurado em um servidor dedicado ou em uma máquina de desenvolvimento. Você pode seguir as instruções de instalação e configuração no site oficial do GitLab.
+
+Adicione o arquivo .gitlab-ci.yml
+O próximo passo é criar um arquivo .gitlab-ci.yml no diretório raiz do seu projeto. Este arquivo contém as etapas do pipeline, como compilação, teste e implantação, além de outras configurações do pipeline, como variáveis de ambiente e notificações.
+
+Defina as etapas do pipeline
+As etapas do pipeline são definidas no arquivo .gitlab-ci.yml. Cada etapa representa uma etapa no processo de construção, teste e implantação do software. Você pode usar os scripts de construção e teste existentes em seu projeto ou escrever seus próprios scripts personalizados. Aqui está um exemplo simples de arquivo .gitlab-ci.yml:
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - echo "Construindo o projeto"
+
+test:
+  stage: test
+  script:
+    - echo "Executando os testes"
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Implantando o projeto"
+
+
+Este arquivo define três etapas: construção, teste e implantação. Cada etapa tem um nome e um script que será executado durante a etapa.
+
+Execute o pipeline
+Agora que o arquivo .gitlab-ci.yml está definido, você pode executar o pipeline clicando em "CI/CD" na barra lateral do GitLab e selecionando "Pipelines". Você pode ver o status do pipeline e a saída do script para cada etapa.
+
+Adicione notificações
+Para receber notificações sobre o status do pipeline, você pode adicionar um webhook ou enviar notificações por email ou Slack. Para adicionar notificações, vá para a página de configurações do projeto e selecione "Integração". Lá, você pode adicionar webhooks, emails ou Slack.
+
+O GitLab CI é uma ferramenta poderosa que pode ajudar a automatizar o processo de construção, teste e implantação do software. Ao seguir os passos acima, você pode começar a utilizar o GitLab CI em seu projeto e obter os benefícios da integração contínua e implantação contínua.
