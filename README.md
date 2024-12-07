@@ -1,19 +1,67 @@
 # Projetos
-Projeto para portfolio para exibir minhas habilidades e competências
 
-## Projetos que estão em desenvolvimento
+Este repositório apresenta uma coleção de projetos desenvolvidos para demonstrar minhas habilidades e competências em diferentes tecnologias e abordagens de desenvolvimento. Os projetos abrangem diversas áreas, incluindo sistemas de gerenciamento, APIs, aplicativos front-end e controle financeiro.
 
-- Sistema de Gerenciamento de Vendas:
-Desenvolvido com C#, ASP .NET, MVC e SQL Server, esse sistema permite o cadastro de produtos, clientes e pedidos, além de gerenciar o estoque e as vendas. Implementa arquitetura em camadas e padrões de projeto como SOLID e DDD.
+---
 
-- API de Autenticação:
-Construída com C#, ASP .NET WebAPI e Entity Framework, essa API fornece autenticação e autorização para outros sistemas da empresa. Implementa padrões de projeto como Singleton e Factory Method, além de TDD para testes automatizados.
+## Projetos em Desenvolvimento
 
-- Aplicativo de Lista de Tarefas:
-Desenvolvido com AngularJS, Bootstrap e HTML/CSS, esse aplicativo permite o gerenciamento de tarefas pessoais, com opções para adicionar, editar e excluir tarefas. Usa o LocalStorage para armazenar os dados do usuário.
+### 1. **Sistema de Gerenciamento de Vendas**
+- **Tecnologias:** C#, ASP.NET, MVC, SQL Server.
+- **Descrição:** Sistema para cadastro de produtos, clientes e pedidos, além de gerenciamento de estoque e vendas.
+- **Destaques:**
+  - Arquitetura em camadas.
+  - Implementação de princípios SOLID.
+  - Uso do padrão **Domain-Driven Design (DDD)**.
 
-- Sistema de Gerenciamento de Projetos:
-Construído com ReactJS, ASP .NET Core e SQL Server, esse sistema permite o gerenciamento de projetos, com opções para criar, editar e excluir projetos, bem como atribuir tarefas a usuários e acompanhar o progresso do projeto. Usa o Entity Framework para acesso ao banco de dados.
+---
 
-- Aplicativo de Controle Financeiro Pessoal:
-Desenvolvido com AngularJS, HTML/CSS e JavaScript, esse aplicativo permite o controle de despesas pessoais, com opções para adicionar, editar e excluir despesas. Usa o LocalStorage para armazenar os dados do usuário e implementa testes automatizados com TDD.
+### 2. **API de Autenticação**
+- **Tecnologias:** C#, ASP.NET WebAPI, Entity Framework.
+- **Descrição:** API para autenticação e autorização, integrada a outros sistemas corporativos.
+- **Destaques:**
+  - Padrões de projeto como **Singleton** e **Factory Method**.
+  - Testes automatizados usando **Test-Driven Development (TDD)**.
+
+---
+
+### 3. **Aplicativo de Lista de Tarefas**
+- **Tecnologias:** AngularJS, Bootstrap, HTML/CSS.
+- **Descrição:** Aplicativo para gerenciamento de tarefas pessoais, com funcionalidades para adicionar, editar e excluir tarefas.
+- **Destaques:**
+  - Armazenamento de dados do usuário utilizando **LocalStorage**.
+  - Design responsivo com **Bootstrap**.
+
+---
+
+### 4. **Sistema de Gerenciamento de Projetos**
+- **Tecnologias:** ReactJS, ASP.NET Core, SQL Server.
+- **Descrição:** Sistema para criação, edição e exclusão de projetos, atribuição de tarefas a usuários e acompanhamento do progresso.
+- **Destaques:**
+  - Integração com banco de dados utilizando **Entity Framework**.
+  - Interface dinâmica e interativa com **ReactJS**.
+
+---
+
+### 5. **Aplicativo de Controle Financeiro Pessoal**
+- **Tecnologias:** AngularJS, HTML/CSS, JavaScript.
+- **Descrição:** Aplicativo para controle de despesas pessoais, permitindo adicionar, editar e excluir registros.
+- **Destaques:**
+  - Armazenamento de dados no **LocalStorage**.
+  - Testes automatizados utilizando **TDD**.
+
+---
+
+## Objetivo
+
+Esses projetos têm como objetivo destacar:
+- Minha expertise em diversas tecnologias e frameworks.
+- Capacidade de aplicar boas práticas de desenvolvimento, como padrões de projeto e princípios SOLID.
+- Habilidade em criar sistemas robustos e escaláveis com foco em usabilidade e eficiência.
+
+---
+
+*Para mais informações ou dúvidas sobre os projetos, sinta-se à vontade para entrar em contato!*  
+- **LinkedIn:** [dougdoton](https://www.linkedin.com/in/dougdoton/)  
+- **GitHub:** [dougdotcon](https://github.com/dougdotcon)  
+- **Email:** [dougdotcon@gmail.om](mailto:dougdotcon@gmail.om)
